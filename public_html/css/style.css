@@ -1,10 +1,14 @@
-canvas {
+body {
+  background-color: #36393f;
+  background-image: url(../images/page/background.png);
+}
+#captureCanvas {
   background: black;
   position: absolute;
   left: 0;
   top: 0;
 }
-div {
+#jensOverlay {
   background-color: transparent;
   background-image: url(../images/jens.png);
   background-size: cover;

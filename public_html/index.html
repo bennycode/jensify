@@ -3,14 +3,16 @@
   <head>
     <title>Jensify</title>
     <meta charset="utf-8" />
+    <link href="lib/pure-min.css" rel="stylesheet" type="text/css" />
     <link href="css/style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <div id="jens-overlay"></div> 
-    <canvas id="my-canvas" width="750" height="560"></canvas>
+    
+    <div id="jensOverlay"></div> 
+    <canvas id="captureCanvas" width="750" height="560"></canvas>
     <script>
       (function () {
-        var canvas = document.getElementById("my-canvas");
+        var canvas = document.getElementById("captureCanvas");
         var context = canvas.getContext("2d");
         var droppedImage = document.createElement("img");
 
@@ -19,7 +21,6 @@
 
           var horizontalRatio = canvas.width / droppedImage.width;
           var verticalRatio = canvas.height / droppedImage.height;
-          var ratio = Math.min(horizontalRatio, verticalRatio);
 
           var x = 0;
           var y = 0;
