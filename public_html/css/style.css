@@ -5,8 +5,6 @@ body {
 #captureCanvas {
   background: black;
   position: absolute;
-  left: 0;
-  top: 0;
 }
 #jensOverlay {
   background-color: transparent;
@@ -17,7 +15,28 @@ body {
   pointer-events: none;
   z-index: 999;
   position: absolute;
-  left: 0;
-  top: 0;
+}
+#jensMixin {
+  width: 750px;
+  height: 560px;
+}
+#actions {
+  padding-top: 20px;
+}
+#actions .action-button {
+  color: #3b3e45;
+  font-family: 'Open Sans Condensed', monospace;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 32px;
+  text-transform: uppercase;
+  outline: 0;
+  border-radius: 3px;
+  border-style: solid;
+  border-width: 1px;
+}
+#actions .action-button.recommended {
+  border-color: #32ae85;
+  background-color: #35bb8e;
 }
 /*# sourceMappingURL=style.css.map */
