@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Jensify</title>
+    <style>
+      canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: black;
+      }
+
+      div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 750px;
+        height: 560px;
+        background: transparent url(./jens.png);
+        background-size: cover;
+        z-index: 999;
+        pointer-events: none;
+      }
+
+      p {
+        position: absolute;
+        top: 20px;
+        left: 800px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div> </div> 
+    <canvas id="my-canvas" width="750" height="560"></canvas>
+    <script>
+      (function () {
+        var canvas = document.getElementById("my-canvas"),
+                context = canvas.getContext("2d"),
+                img = document.createElement("img"),
+                clearCanvas = function () {
+                };
+
+        img.addEventListener("load", function () {
+          clearCanvas();
+          var hRatio = canvas.width / img.width;
+          var vRatio = canvas.height / img.height;
+          var ratio = Math.min(hRatio, vRatio);
+
+          x = y = 0;
+          w = 750;
+          h = 560;
+          offsetX = 0.5;
+          offsetY = 0.5;
+          if (offsetX < 0)
+            offsetX = 0;
+          if (offsetY < 0)
+            offsetY = 0;
+          if (offsetX > 1)
+            offsetX = 1;
+          if (offsetY > 1)
+            offsetY = 1;
+          var iw = img.width,
+                  ih = img.height,
+                  r = Math.min(w / iw, h / ih),
+                  nw = iw * r,
+                  nh = ih * r,
+                  cx, cy, cw, ch, ar = 1;
+          if (nw < w)
+            ar = w / nw;
+          if (nh < h)
+            ar = h / nh;
+          nw *= ar;
+          nh *= ar;
+          cw = iw / (nw / w);
+          ch = ih / (nh / h);
+          cx = (iw - cw) * offsetX;
+          cy = (ih - ch) * offsetY;
+          if (cx < 0)
+            cx = 0;
+          if (cy < 0)
+            cy = 0;
+          if (cw > iw)
+            cw = iw;
+          if (ch > ih)
+            ch = ih;
+
+          context.drawImage(img, cx, cy, cw, ch, x, y, w, h);
+        }, false);
+
+        canvas.addEventListener("dragover", function (evt) {
+          evt.preventDefault();
+        }, false);
+
+        // Handle dropped image file - only Firefox and Google Chrome
+        canvas.addEventListener("drop", function (evt) {
+          var files = evt.dataTransfer.files;
+          if (files.length > 0) {
+            var file = files[0];
+            if (typeof FileReader !== "undefined" && file.type.indexOf("image") != -1) {
+              var reader = new FileReader();
+              // Note: addEventListener doesn't work in Google Chrome for this event
+              reader.onload = function (evt) {
+                img.src = evt.target.result;
+              };
+              reader.readAsDataURL(file);
+            }
+          }
+          evt.preventDefault();
+        }, false);
+      })();
+    </script>
+  </body>
+</html>
