@@ -1,36 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
     <title>Jensify</title>
-    <style>
-      canvas {
-        position: absolute;
-        top: 0;
-        left: 0;
-        background: black;
-      }
-
-      div {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 750px;
-        height: 560px;
-        background: transparent url(./jens.png);
-        background-size: cover;
-        z-index: 999;
-        pointer-events: none;
-      }
-
-      p {
-        position: absolute;
-        top: 20px;
-        left: 800px;
-      }
-    </style>
+    <meta charset="utf-8" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
   </head>
-
   <body>
     <div id="jens-overlay"></div> 
     <canvas id="my-canvas" width="750" height="560"></canvas>
